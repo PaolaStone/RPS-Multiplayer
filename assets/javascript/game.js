@@ -27,6 +27,44 @@ var selection2 = ""
 var wins2 = 0
 var losses2 = 0
 
+var playersRef = database.ref("/players");
+var connectionsRef = database.ref("/connections");
+var connectedRef = database.ref(".info/connected");
+var chatRef = database.ref("/chat");
+// console.log("this is connected  "+ connectedRef)
+
+player1Object = {
+    player1Name: "",
+    player1Choice: "",
+    wins1: 0,
+    losses1: 0,
+}
+
+player2Object = {
+    player2Name: "",
+    player2Choice: "",
+    wins2: 0,
+    losses2: 0,
+}
+
+connectedRef.on("value", function(snap){
+    if (snap.val()){
+        var con = connectionsRef.push(true);
+        con.onDisconnect().remove();
+    }
+});
+
+connectionsRef.on("value", function(snap){
+    console.log("this is the number of connections  "+ snap.numChildren());
+    // if (((snap.numChildren()) === 2) && (player1Name !== "")&&(player2Name !=="")){
+    //     console.log("all if conditions are true")
+    // }else{
+    //     $("#result").append("Waiting on other player")
+    // }
+})
+
+
+
 function gameAreatHide() {
     var x = document.getElementById("gameArea");
     x.style.display = "none";

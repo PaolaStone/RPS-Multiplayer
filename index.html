@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>RPS</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets\css\style.css">
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Firebase References -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+</head>
+
+<body>
+
+<div id = "intro" class="container-fluid text-center">
+    <img id="firstImg" src="assets\images\tittle1.png">
+    <h3>The battle </h3>
+</div>
+
+<br>
+<br>
+<div class = "container-fluid text-center">
+        <form id="player-form">
+                <label for="player-input"></label>
+                <input type="text" id="player-input" class= "rounded" placeholder="Player's name">
+                <input id="playerName" type="submit" class="btn btn-secondary" value="Start game!">
+        </form>
+</div>
+      <br>
+
+<div class = "container-fluid text-center">
+        <div class="row">
+            <div  class="col-sm  text-black text-center" style="max-width: 33%" style= "align-items: center">
+                <h6>Player1_Name</h6>
+                <p>Rock, paper, scissors. Shoot!</p>
+                <div class="row ">
+                        <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
+                        <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
+                        <button id = "scissors"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\scissors.png" height="60" width="60"></button>
+                </div>
+                <br>
+                <h6>x wins out of</h6>
+                
+            </div>
+
+            <div class="col-sm alert alert-dark text-center">
+                  
+            </div>
+
+            <div  class="col-sm  text-black text-center" style="max-width: 33%" style= "align-items: center">
+                    <h6>Player2_Name</h6>
+                    <p>Rock, paper, scissors. Shoot!</p>
+                    <div class="row ">
+                            <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
+                            <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
+                            <button id = "scissors"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\scissors.png" height="60" width="60"></button>
+                    </div>
+                    <br>
+                    <h6>x wins out of</h6>  
+            </div>
+
+        </div>
+           
+        <div class="container text-center">
+            chat
+    
+    </div>  
+                 
+        
+
+       <script type="text/javascript" src="assets\javascript\game.js"></script>
+       
+
+</body>

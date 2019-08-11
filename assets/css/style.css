@@ -8,6 +8,31 @@
     background-size:cover;
 } */
 
-.btn-lg{
+/* .btn-lg{
     margin:auto
+} */
+
+#selected1{
+    margin-right: 40px;
+}
+
+#divider{
+    background-color: rgba(228, 228, 111, 0.972);
+    display: block;
+}
+
+#rock, #paper, #scissors{
+    margin-right: 30PX;
+}
+
+.container{
+    align-items: center;
+}
+
+#shoot1{
+    align-items: center;
+}
+
+.row{
+    text-align: center;
 }

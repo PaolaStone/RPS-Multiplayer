@@ -15,70 +15,94 @@
   <script src="https://code.jquery.com/jquery.js"></script>
 
   <!-- Firebase References -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
 
 </head>
 
 <body>
 
-<div id = "intro" class="container-fluid text-center">
-    <img id="firstImg" src="assets\images\tittle1.png">
-    <h3>The battle </h3>
-</div>
-
-<br>
-<br>
-<div class = "container-fluid text-center">
-        <form id="player-form">
-                <label for="player-input"></label>
-                <input type="text" id="player-input" class= "rounded" placeholder="Player's name">
-                <input id="playerName" type="submit" class="btn btn-secondary" value="Start game!">
-        </form>
-</div>
-      <br>
-
-<div class = "container-fluid text-center">
-        <div class="row">
-            <div  class="col-sm  text-black text-center" style="max-width: 33%" style= "align-items: center">
-                <h6>Player1_Name</h6>
-                <p>Rock, paper, scissors. Shoot!</p>
-                <div class="row ">
-                        <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
-                        <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
-                        <button id = "scissors"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\scissors.png" height="60" width="60"></button>
-                </div>
-                <br>
-                <h6>x wins out of</h6>
-                
-            </div>
-
-            <div class="col-sm alert alert-dark text-center">
-                  
-            </div>
-
-            <div  class="col-sm  text-black text-center" style="max-width: 33%" style= "align-items: center">
-                    <h6>Player2_Name</h6>
-                    <p>Rock, paper, scissors. Shoot!</p>
-                    <div class="row ">
-                            <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
-                            <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
-                            <button id = "scissors"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\scissors.png" height="60" width="60"></button>
-                    </div>
-                    <br>
-                    <h6>x wins out of</h6>  
-            </div>
-
-        </div>
-           
-        <div class="container text-center">
-            chat
-    
-    </div>  
-                 
-        
-
-       <script type="text/javascript" src="assets\javascript\game.js"></script>
+    <div id = "intro" class="container-fluid text-center">
+        <br>
+        <br>
+        <img id="firstImg" src="assets\images\tittle1.png">
+    </div>
+    <br>
+    <div id = "divider" class="container-fluid alert">
        
+    </div>
 
+    <br>
+
+    <div id = "selectPlayer" class="container-fluid text-center">
+        <h3>Select your player</h3>
+        <br>
+            <button id = "selected1"   class="btn btn-lg px-6 btn-outline-danger"><img src="assets\images\player1.jpg" height="100" width="100">Player 1</button>
+            <button id = "selected2"   class="btn btn-lg px-6 btn-outline-primary"><img src="assets\images\player2.jpg" height="100" width="100">Player 2</button>
+    </div>
+    <br>
+    
+    <div id = "gameArea" class = "container text-center">
+        <div id = "container1">
+            <form id="player1Form">
+                <label for="player1-input"></label>
+                <input type="text" id="player1-input" class= "rounded" placeholder="Player 1 name">
+                <input id="player1Name" type="submit" class="btn btn-secondary" value="Start game!">
+            </form>
+            <br>
+            <br>
+                
+            <h6 id = "player1"></h6>
+            <br>
+            <br>
+            <div id = "shoot1">
+                <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
+                <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
+                <button id = "scissors"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\scissors.png" height="60" width="60"></button>
+                <br>
+                <br>
+                <h6>Shoot!</h6>
+                <h6 id= wins1></h6>
+                 <h6 id= losses1></h6>  
+            </div>
+        </div>
+
+        <div  id = "container2" class="text-black text-center">
+            <form id="player2Form">
+                <label for="player2-input"></label>
+                <input type="text" id="player2-input" class= "rounded" placeholder="Player 2 name">
+                <input id="player2Name" type="submit" class="btn btn-secondary" value="Start game!">
+            </form>    
+            <br>
+            <br>
+
+            <h6 id = "player2"></h6>
+            <br>
+            <br>
+            <div id = "shoot2" class= "container text-center">
+                <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
+                <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
+                <button id = "scissors"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\scissors.png" height="60" width="60"></button>
+                <br>
+                <br>
+                <h6>Shoot!</h6>
+                <h6 id= wins2></h6>
+                <h6 id= losses2></h6>  
+            </div>
+        </div>
+
+        <div id = "result" class="container alert alert-dark text-center"></div>
+
+            
+        <br>
+        <br>
+        <div id = "chat" class="container-fluid alert alert-dark text-center">
+            chat
+            
+        </div> 
+    </div>
+    
+    <script type="text/javascript" src="assets\javascript\game.js"></script>
+        
 </body>
+</html>

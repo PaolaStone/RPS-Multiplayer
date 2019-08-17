@@ -14,27 +14,27 @@ var firebaseConfig = {
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-
 var database = firebase.database();
 
-var player1Status = "notLogged";
-var player1Name = "";
-var selection1 = "";
-var wins1 = 0;
-var losses1 = 0;
+// var player1Status = "notLogged";
+// var player1Name = "";
+// var player1Choice = "";
+// var wins1 = 0;
+// var losses1 = 0;
 
 
-var player2Status = "notLogged";
-var player2Name = "";
-var selection2 = "";
-var wins2 = 0;
-var losses2 = 0;
+// var player2Status = "notLogged";
+// var player2Name = "";
+// var player2Choice = "";
+// var wins2 = 0;
+// var losses2 = 0;
 
-var playersRef = database.ref("/players");
+var player1Ref = database.ref("/player1");
+var player2Ref = database.ref("/player2");
+
 var connectionsRef = database.ref("/connections");
 var connectedRef = database.ref(".info/connected");
 var chatRef = database.ref("/chat");
-// console.log("this is connected  "+ connectedRef)
 
 player1Object = {
     player1Status : "",
@@ -52,265 +52,150 @@ player2Object = {
     losses2: 0,
 }
 
+$(".btn-outline-danger").hide();
+$(".btn-outline-primary").hide();
 
 
-function gameAreatHide() {
-    var x = document.getElementById("gameArea");
-    x.style.display = "none";
+
+function checkConnections (){
+    connectionsRef.on("value", function(snap){
+        console.log("this is the number of connections  "+ snap.numChildren());
+        if ( player1Status === "notLogged" && player2Status === "notLogged"){
+            console.log("waiting on players to enter name")
+        }
+        if (snap.numChildren() === 1 && player1Status === "logged"){
+            player1FormHide();
+            document.getElementById("player1Name").disabled = true;
+            console.log(" 1 connection and 1 logged")
+            // database.ref().push({
+            //     player1Status: player1Status,
+            //     player1Name: player1Name,
+            
+            // })
+            playersRef.push(player1Name)
+            // postsRef.push().setValueAsync(new Post("alanisawesome", "The Turing Machine"));
+        }
+        if (snap.numChildren() === 2 && player1Status === "logged"){
+            player1FormHide();
+            console.log(" 2 connection and 1 logged")
+            database.ref().on("value", function(snapshot){
+                if (snapshot.child("player1Status").exists() && snapshot.child("player1Name").exists()) {
+                    document.getElementById("player1Name").disabled = true;
+                    console.log("this is exist" + player1Status)
+                }
+            });
+        }
+        if (snap.numChildren() === 1 && player2Status === "logged"){
+            player2FormHide();
+            console.log(" 1 connection and 2 logged")
+            document.getElementById("player2Name").disabled = true;
+        }
+        if (snap.numChildren() === 2 && player2Status === "logged"){
+            player2FormHide();
+            console.log(" 1 connection and 2 logged")
+            document.getElementById("player2Name").disabled = true;
+        }
+    });
 }
-
-function gameAreaShow() {
-    var x = document.getElementById("gameArea");
-    x.style.display = "block";
-}
-
-function container1Hide() {
-    var x = document.getElementById("container1");
-    x.style.display = "none";
-}
-
-function container1Show() {
-    var x = document.getElementById("container1");
-    x.style.display = "block";
-}
-
-function container2Hide() {
-    var x = document.getElementById("container2");
-    x.style.display = "none";
-}
-
-function container2Show() {
-    var x = document.getElementById("container2");
-    x.style.display = "block";
-}
-
-function resultHide() {
-    var x = document.getElementById("result");
-    x.style.display = "none";
-}
-
-function resultShow() {
-    var x = document.getElementById("result");
-    x.style.display = "block";
-}
-
-function chatHide() {
-    var x = document.getElementById("chat");
-    x.style.display = "none";
-}
-
-function chatShow() {
-    var x = document.getElementById("chat");
-    x.style.display = "block";
-}
-
-// function selectPlayerHide() {
-//     var x = document.getElementById("selectPlayer");
-//     x.style.display = "none";
-// }
-
-// function selectPlayerShow() {
-//     var x = document.getElementById("selectPlayer");
-//     x.style.display = "block";
-// }
-
-function selected1Hide() {
-    var x = document.getElementById("selected1");
-    x.style.display = "none";
-}
-
-function selected1Show() {
-    var x = document.getElementById("selected1");
-    x.style.display = "block";
-}
-
-function selected2Hide() {
-    var x = document.getElementById("selected2");
-    x.style.display = "none";
-}
-
-function selected2Show() {
-    var x = document.getElementById("selected2");
-    x.style.display = "block";
-}
-
-
-function player1FormHide() {
-    var x = document.getElementById("player1Form");
-    x.style.display = "none";
-}
-
-function player1FormShow() {
-    var x = document.getElementById("player1Form");
-    x.style.display = "block";
-}
-
-function shoot1Hide() {
-    var x = document.getElementById("shoot1");
-    x.style.display = "none";
-}
-
-function shoot1Show() {
-    var x = document.getElementById("shoot1");
-    x.style.display = "block";
-}
-
-function player2FormHide() {
-    var x = document.getElementById("player2Form");
-    x.style.display = "none";
-}
-
-function player2FormShow() {
-    var x = document.getElementById("player2Form");
-    x.style.display = "block";
-}
-
-function shoot2Hide() {
-    var x = document.getElementById("shoot2");
-    x.style.display = "none";
-}
-
-function shoot2Show() {
-    var x = document.getElementById("shoot2");
-    x.style.display = "block";
-}
-
-// gameAreatHide();
+// checkConnections();
 
 connectedRef.on("value", function(snap){
     if (snap.val()){
         var con = connectionsRef.push(true);
         con.onDisconnect().remove();
+        
     }
 });
 
-function selected1 (){
-   // gameAreaShow();
-    selected2Hide();
-    // player2FormHide();
-    container2Hide();
-    resultHide();
-    chatHide();
-    selected1Show();
-    player1FormShow();
-    shoot1Hide();
+function choicesArea(){
     
-    $("#player1Name").on("click", function(){
-        event.preventDefault();
-        player1Name = $("#player1-input").val().trim();
-        database.ref().push({
-            player1Status: "logged",
-            player1Name:player1Name,
-        });
-        player1FormHide();
-        $("#player1").append(player1Name + "  ,you are player 1");
-        shoot1Show();
-        resultShow();
-        chatShow();
-
-    });
-};
-
-function selected2 (){
-    
-    gameAreaShow();
-    selected1Hide();
-    player1FormHide();
-    resultHide();
-    container1Hide();
-    chatHide();
-    shoot2Hide();
-    selected2Show();
-    player2FormShow();
-    
-    $("#player2Name").on("click", function(){
-        event.preventDefault();
-        player2Name = $("#player2-input").val().trim();
-        database.ref().push({
-            player2Status: "logged",
-            player2Name:player2Name,
-        });
-        player2FormHide();
-        $("#player2").append(player2Name + "  ,you are player 2");
-        shoot1Show();
-        resultShow();
-        chatShow();
-
-    });
-};
-
-connectionsRef.on("value", function(snap){
-    console.log("this is the number of connections  "+ snap.numChildren());
-    console.log("p1 status before if  " + player1Status)
-    if (snap.numChildren() === 1 && player1Status === "notLogged"){
-        console.log("display player 1 picture and form");
-        selected1 ();
-        player1Status = "logged"
-        console.log("p1 status bafter if  " + player1Status)
+    if (player1Object.player1Name !=="" && player2Object.player2Name !== ""){
+        $(".btn-outline-danger").show();
+        $(".btn-outline-primary").show();
+        console.log("this is choices area")
     }
-    console.log("p2 status before if  " + player2Status)
-    if (snap.numChildren() === 2 && player1Status === "notLogged") {
-        console.log("display player 2 picture and form");
-        selected2 ();
-        player2Status = "logged"
-        console.log("p2 status after if  " + player2Status)
-    }
+}
+
+$("#player1Name").on("click", function(){
+    event.preventDefault();
+    player1Object.player1Status = "logged"
+    player1Object.player1Name = $("#player1-input").val().trim();
+    console.log("p1 status  " + player1Object.player1Status)
+    console.log("p1 name  " + player1Object.player1Name)
+    console.log (player1Object)
+    $("#selected1").prepend(player1Object.player1Name + "<p></p>")
+    $("#player1-input").hide();
+    $("#player1Name").hide();
+    choicesArea()
+    player1Ref.push({
+        player1Object
+    });
     
-})
+});
 
 
 
-// $("#selected1").on("click", function(){
-//     event.preventDefault();
-//     gameAreaShow();
-//     selectPlayerHide();
-//     resultHide();
-//     container2Hide();
-//     chatHide();
-//     shoot1Hide();
+$("#player2Name").on("click", function(){
+    event.preventDefault();
+    player2Object.player2Status = "logged"
+    player2Object.player2Name = $("#player2-input").val().trim();
+    console.log("p2 atatus  " + player2Object.player2Status)
+    console.log("p2 name  " + player2Object.player2Name)
+    console.log(player2Object)
+    $("#selected2").prepend(player2Object.player2Name + "<p></p>")
+    $("#player2Name").hide();
+    $("#player2-input").hide();
+    choicesArea()
+    player2Ref.push({
+        player2Object
+    });
     
-//     $("#player1Name").on("click", function(){
-//         event.preventDefault();
-//         player1Name = $("#player1-input").val().trim();
-//         database.ref().push({
-//             player1Name:player1Name,
-//         });
-//         player1FormHide();
-//         $("#player1").append(player1Name + "  ,you are player 1");
-//         shoot1Show();
-//         resultShow();
-//         chatShow();
+});
 
-//     });
-    
+
+
+
+console.log(player2Object.player2Name)
+
+
+
+
+
+function choice1(){
+    $(".btn-outline-danger").on("click",function(){
+        console.log("clicked " + this.id)
+        player1Object.player1Choice = this.id
+        player1Ref.push(player1Object.player1Choice)
+        console.log(player1Object)
+        $(".btn-outline-danger").prop("disabled",true);
+    })
+}
+
+choice1();
+
+function choice2(){
+    $(".btn-outline-primary").on("click",function(){
+        console.log("clicked " + this.id)
+        player2Object.player2Choice = this.id
+        player2Ref.push(player2Object.player2Choice)
+        console.log(player2Object)
+        $(".btn-outline-primary").prop("disabled",true);
+    })
+}
+
+choice2();
+
+
+// connectedRef.on("value", function(snap){
+//     if (snap.val()){
+//         var con = connectionsRef.push(true);
+//         con.onDisconnect().remove();
+//     }
 // });
 
-// $("#selected2").on("click", function(){
-//     event.preventDefault();
-//     gameAreaShow();
-//     selectPlayerHide();
-//     resultHide();
-//     container1Hide();
-//     chatHide();
-//     shoot2Hide();
-    
-//     $("#player2Name").on("click", function(){
-//         event.preventDefault();
-//         player2Name = $("#player2-input").val().trim();
-//         database.ref().push({
-//             player2Name:player2Name,
-//         });
-//         player2FormHide();
-//         $("#player2").append(player2Name + "  ,you are player 2");
-//         shoot2Show();
-//         resultShow();
-//         chatShow();
-
-//     });
-    
 
 
 
-
-  // the end
+// The end
 });
+

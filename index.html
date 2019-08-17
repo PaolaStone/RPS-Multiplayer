@@ -24,46 +24,84 @@
 
     <div id = "intro" class="container-fluid text-center">
         <br>
-        <br>
         <img id="firstImg" src="assets\images\tittle1.png">
     </div>
     <br>
     <div id = "divider" class="container-fluid alert"></div>
-
     <br>
 
-    <!-- <div id = "selectPlayer" class= "container text-center"> -->
-        <!-- <h3>Select your player</h3> -->
-        <!-- <br> -->
-    <div class = "container text-center">
-        <button id = "selected1"   class="btn btn-lg px-6 btn-outline-danger"><img src="assets\images\player1.jpg" height="100" width="100">Player 1</button>
-        <button id = "selected2"   class="btn btn-lg px-6 btn-outline-primary "><img src="assets\images\player2.jpg" height="100" width="100">Player 2</button>
-    <!-- </div> -->
-    </div>   
+    <div class = "row text-center">
+        <div class="col-4">
+            <button id = "selected1" class="btn btn-lg px-6  btn-danger"><img src="assets\images\player1.jpg" height="100" width="100"></button>
+            <br>
+            <div id = "container1">
+                <br>
+                <form id="player1Form">
+                    <label for="player1-input"></label>
+                    <input type="text" id="player1-input" class= "rounded" placeholder="Player 1 name">
+                    <input id="player1Name" type="submit" class="btn btn-secondary" value="Start game!">
+                </form>
+                <br> 
+                <div id = "shoot1">
+                    <button id = "rock"   class="btn btn-lg px-6 btn-outline-danger"><img src="assets\images\rock.png" height="60" width="60"></button>
+                    <button id = "paper"   class="btn btn-lg px-6 btn-outline-danger"><img src="assets\images\paper.png" height="60" width="60"></button>
+                    <button id = "scissors"   class="btn btn-lg px-6 btn-outline-danger"><img src="assets\images\scissors.png" height="60" width="60"></button>
+                    <br>
+                    <br>
+                    <!-- <h6>Shoot!</h6> -->
+                    <h6 id= wins1></h6>
+                    <h6 id= losses1></h6>  
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-4">    
+            <!-- <button id = "selected1" class="btn btn-lg px-6 btn-outline-danger"><img src="assets\images\player1.jpg" height="100" width="100"></button> -->
+            <!-- <button id = "selected2" class="btn btn-lg px-6 btn-outline-primary "><img src="assets\images\player2.jpg" height="100" width="100"></button> -->
+        </div>
+
+        <div class="col-4">
+            <button id = "selected2" class="btn btn-lg px-6 btn-primary "><img src="assets\images\player2.jpg" height="100" width="100"></button>
+            <div  id = "container2" class="text-black text-center">
+            <br>
+            <form id="player2Form">
+                <label for="player2-input"></label>
+                <input type="text" id="player2-input" class= "rounded" placeholder="Player 2 name">
+                <input id="player2Name" type="submit" class="btn btn-secondary" value="Start game!">
+            </form>    
+            <br>
+            <div id = "shoot2" class= "container text-center">
+                <button id = "rock"   class="btn btn-lg px-6 btn-outline-primary"><img src="assets\images\rock.png" height="60" width="60"></button>
+                <button id = "paper"   class="btn btn-lg px-6 btn-outline-primary"><img src="assets\images\paper.png" height="60" width="60"></button>
+                <button id = "scissors"   class="btn btn-lg px-6 btn-outline-primary"><img src="assets\images\scissors.png" height="60" width="60"></button>
+                <br>
+                <br>
+                <h6>Shoot!</h6>
+                <h6 id= wins2></h6>
+                <h6 id= losses2></h6>  
+            </div>
+        </div>
+    </div>
+</div> 
     <br>
     
-    <div id = "gameArea" class = "container text-center">
+    <!-- <div id = "gameArea" class = "container text-center">
         <div id = "container1">
             <form id="player1Form">
                 <label for="player1-input"></label>
                 <input type="text" id="player1-input" class= "rounded" placeholder="Player 1 name">
                 <input id="player1Name" type="submit" class="btn btn-secondary" value="Start game!">
             </form>
-            <br>
-            <br>
-                
-            <h6 id = "player1"></h6>
-            <br>
-            <br>
+          
             <div id = "shoot1">
                 <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
                 <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
                 <button id = "scissors"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\scissors.png" height="60" width="60"></button>
                 <br>
-                <br>
+             
                 <h6>Shoot!</h6>
                 <h6 id= wins1></h6>
-                 <h6 id= losses1></h6>  
+                <h6 id= losses1></h6>  
             </div>
         </div>
 
@@ -73,12 +111,7 @@
                 <input type="text" id="player2-input" class= "rounded" placeholder="Player 2 name">
                 <input id="player2Name" type="submit" class="btn btn-secondary" value="Start game!">
             </form>    
-            <br>
-            <br>
-
-            <h6 id = "player2"></h6>
-            <br>
-            <br>
+         
             <div id = "shoot2" class= "container text-center">
                 <button id = "rock"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\rock.png" height="60" width="60"></button>
                 <button id = "paper"   class="btn btn-lg px-6 btn-outline-dark"><img src="assets\images\paper.png" height="60" width="60"></button>
@@ -92,13 +125,10 @@
         </div>
 
         <div id = "result" class="container alert alert-dark text-center"></div>
-
-            
-        <br>
-        <br>
+        <br> -->
+        
         <div id = "chat" class="container-fluid alert alert-dark text-center">
             chat
-            
         </div> 
     </div>
     

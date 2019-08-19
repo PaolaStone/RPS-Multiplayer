@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>RPS</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets\css\style.css">
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Firebase References -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+
+</head>
+
+<body>
+
+    <div id = "intro" class="container-fluid text-center">
+        <br>
+        <img id="firstImg" src="assets\images\tittle1.png">
+    </div>
+    <br>
+    <div id = "divider" class="container-fluid alert"></div>
+    <br>
+
+    <div class = "row text-center">
+        <div class="col-md-6">
+            <button id = "selected2" class="btn btn-lg px-6 btn-primary "><img src="assets\images\player2.jpg" height="100" width="100"></button>
+            <br>
+            <div  id = "container2">
+                <br>
+            
+                <br>
+                <div id = "shoot2" class= "container text-center">
+                    <button id = "rock2"   class="btn btn-lg px-6 btn-outline-primary"><img src="assets\images\rock.png" height="60" width="60"></button>
+                    <button id = "paper2"   class="btn btn-lg px-6 btn-outline-primary"><img src="assets\images\paper.png" height="60" width="60"></button>
+                    <button id = "scissors2"   class="btn btn-lg px-6 btn-outline-primary"><img src="assets\images\scissors.png" height="60" width="60"></button>
+                    <br>
+                    <br>
+                    <h5>Shoot! </h5>
+                    <h6 id= "yourChoice2"></h6>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">    
+            <div id = "info" class="container text-center">
+                <h5>Results</h5>
+                <br>  
+                <div id = status class="row">
+                    <div class="col-sm-6">
+                        <h6 id= "wins2"></h6>
+                        <h6 id= "ties2"></h6>
+                    </div>
+                    <div id = imageResult class="col-sm-6"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div> 
+    <br>
+    
+    <div id = "chat" class="container-fluid alert alert-dark text-center">
+            chat
+        </div> 
+    </div>
+    
+    <script type="text/javascript" src="assets\javascript\game.js"></script>
+        
+</body>
+</html>

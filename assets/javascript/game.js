@@ -138,11 +138,13 @@ function results(){
         player2Object.ties2 = player2Object.ties2 + 1;
         
     }
-    if ((test1 === "rock")&& (test2 ==="scissors") || (test1 === "paper") && (test2 ==="rocks") || (test1 === "scissors") && (test2 ==="paper")){
+    if (((test1 === "rock") && (test2 ==="scissors")) || ((test1 === "paper") && (test2 ==="rock")) || ((test1 === "scissors") && (test2 ==="paper"))){
         player1Object.wins1 = player1Object.wins1 + 1;
+        console.log(player1Object.wins1)
 
-    }else if ((test2 === "rock")&& (test2 ==="scissors") || (test2 === "paper") && (test2 ==="rocks") || (test2 === "scissors") && (test1 ==="paper")){
+    }else if (((test2 === "rock")&& (test1 ==="scissors")) || ((test2 === "paper") && (test1 ==="rock")) || ((test2 === "scissors") && (test1 ==="paper"))){
         player2Object.wins2 = player2Object.wins2 + 1;
+        console.log(player2Object.wins2)
     }
 
     
